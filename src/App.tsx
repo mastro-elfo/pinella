@@ -4,9 +4,10 @@ import {
   ThemeProvider,
   useMediaQuery,
 } from "@mui/material";
-import { useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import { HashRouter } from "react-router";
 import AppRoutes from "./AppRoutes";
+import ErrorBoundary from "./ErrorBoundary";
 import ScoreboardStore from "./ScoreboardStore";
 
 export default function App() {
@@ -24,11 +25,15 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <HashRouter>
-        <ScoreboardStore>
-          <AppRoutes />
-        </ScoreboardStore>
-      </HashRouter>
+      <ErrorBoundary>
+        <Suspense fallback="Caricamento...">
+          <HashRouter>
+            <ScoreboardStore>
+              <AppRoutes />
+            </ScoreboardStore>
+          </HashRouter>
+        </Suspense>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }
