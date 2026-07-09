@@ -17,7 +17,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { lineClasses, SparkLineChart } from "@mui/x-charts";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ConfirmButton from "./ConfirmButton";
 import EditNameDialog from "./EditNameDialog";
 import type { Team } from "./ScoreboardStore";
@@ -33,10 +33,6 @@ type TeamCardProps = {
   pointsToWin: number;
 };
 
-type IGetBoundingClientRect = {
-  getBoundingClientRect: () => { width: number };
-};
-
 export default function TeamCard({
   team,
   other,
@@ -49,7 +45,8 @@ export default function TeamCard({
 
   const [editNameOpen, setEditNameOpen] = useState(false);
   const [editScoreboardOpen, setEditScoreboardOpen] = useState(false);
-  const sparklineBox = useRef<IGetBoundingClientRect>(null);
+  const [sparklineWidth, setSparklineWidth] = useState(0);
+  const sparklineBox = useRef<HTMLDivElement>(null);
 
   const teamScore = team.history.at(-1) ?? 0;
   const otherScore = other.history.at(-1) ?? 0;
@@ -67,6 +64,18 @@ export default function TeamCard({
     team.history.length === other.history.length &&
     otherScore >= teamScore &&
     otherScore >= pointsToWin;
+
+  useEffect(() => {
+    const callback = () => {
+      const width = sparklineBox.current?.getBoundingClientRect().width;
+      if (width) setSparklineWidth(width);
+    };
+    window.addEventListener("resize", callback);
+    callback();
+    return () => {
+      window.removeEventListener("resize", callback);
+    };
+  }, [sparklineBox.current]);
 
   return (
     <>
@@ -114,7 +123,7 @@ export default function TeamCard({
           >
             <SparkLineChart
               height={60}
-              width={sparklineBox.current?.getBoundingClientRect().width}
+              width={sparklineWidth}
               area
               data={team.history}
               color={theme.palette.secondary.main}
