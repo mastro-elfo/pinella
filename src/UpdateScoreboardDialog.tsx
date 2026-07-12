@@ -19,6 +19,8 @@ import {
   StepButton,
   Stepper,
   Typography,
+  useMediaQuery,
+  useTheme,
   type DialogProps,
 } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -33,6 +35,9 @@ export default function UpdateScoreboardDialog({
   onConfirm,
   ...props
 }: UpdateScoreboardDialog) {
+  const theme = useTheme();
+  const xSmall = useMediaQuery(theme.breakpoints.only("xs"));
+
   const [activeStep, setActiveStep] = useState(0);
 
   const [closed, setClosed] = useState(false);
@@ -131,7 +136,7 @@ export default function UpdateScoreboardDialog({
   };
 
   return (
-    <Dialog {...props}>
+    <Dialog fullScreen={xSmall} {...props}>
       <DialogTitle>
         <Stack
           direction="row"
