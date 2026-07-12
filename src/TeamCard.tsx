@@ -17,7 +17,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { lineClasses, SparkLineChart } from "@mui/x-charts";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import ConfirmButton from "./ConfirmButton";
 import EditNameDialog from "./EditNameDialog";
 import type { Team } from "./ScoreboardStore";
@@ -45,8 +45,6 @@ export default function TeamCard({
 
   const [editNameOpen, setEditNameOpen] = useState(false);
   const [editScoreboardOpen, setEditScoreboardOpen] = useState(false);
-  const [sparklineWidth, setSparklineWidth] = useState(0);
-  const sparklineBox = useRef<HTMLDivElement>(null);
 
   const teamScore = team.history.at(-1) ?? 0;
   const otherScore = other.history.at(-1) ?? 0;
@@ -65,18 +63,6 @@ export default function TeamCard({
     otherScore >= teamScore &&
     otherScore >= pointsToWin;
 
-  useEffect(() => {
-    const callback = () => {
-      const width = sparklineBox.current?.getBoundingClientRect().width;
-      if (width) setSparklineWidth(width);
-    };
-    window.addEventListener("resize", callback);
-    callback();
-    return () => {
-      window.removeEventListener("resize", callback);
-    };
-  }, [sparklineBox.current]);
-
   return (
     <>
       <Card>
@@ -84,6 +70,9 @@ export default function TeamCard({
           title={team.name}
           subheader={`${teamScore} punti`}
           slotProps={{
+            title: {
+              onClick: () => setEditNameOpen(true),
+            },
             subheader: {
               color:
                 difference > 0 ? "success" : difference < 0 ? "error" : "info",
@@ -112,18 +101,17 @@ export default function TeamCard({
           </ListItem>
 
           <Box
-            ref={sparklineBox}
             sx={{
               borderWidth: 1,
               borderColor: theme.palette.divider,
               borderStyle: "solid",
               borderRadius: theme.shape.borderRadius,
               overflow: "hidden",
+              boxSizing: "border-box",
             }}
           >
             <SparkLineChart
               height={60}
-              width={sparklineWidth}
               area
               data={team.history}
               color={theme.palette.secondary.main}
