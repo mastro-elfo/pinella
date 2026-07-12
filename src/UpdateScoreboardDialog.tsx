@@ -25,6 +25,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import TrendingIcon from "./TrendingIcon";
+import withVibration from "./withVibration";
 
 type UpdateScoreboardDialog = Omit<DialogProps, "onClose"> & {
   onClose: () => void;
@@ -225,7 +226,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="error"
-                  onClick={() => setPayJolly(payJolly + 1)}
+                  onClick={withVibration(() => setPayJolly(payJolly + 1))}
                   disabled={closed}
                 >
                   Paga Jolly
@@ -255,7 +256,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="error"
-                  onClick={() => setPayPinella(payPinella + 1)}
+                  onClick={withVibration(() => setPayPinella(payPinella + 1))}
                   disabled={closed}
                 >
                   Paga Pinella
@@ -286,7 +287,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="error"
-                  onClick={() => setPayAce(payAce + 1)}
+                  onClick={withVibration(() => setPayAce(payAce + 1))}
                   disabled={closed}
                 >
                   Paga Assi
@@ -316,7 +317,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="error"
-                  onClick={() => setPayTen(payTen + 1)}
+                  onClick={withVibration(() => setPayTen(payTen + 1))}
                   disabled={closed}
                 >
                   Paga Dieci
@@ -346,7 +347,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="error"
-                  onClick={() => setPayFive(payFive + 1)}
+                  onClick={withVibration(() => setPayFive(payFive + 1))}
                   disabled={closed}
                 >
                   Paga Cinque
@@ -380,7 +381,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="success"
-                  onClick={() => setBurraco300(burraco300 + 1)}
+                  onClick={withVibration(() => setBurraco300(burraco300 + 1))}
                 >
                   +1 Reale
                 </Button>
@@ -409,7 +410,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="success"
-                  onClick={() => setBurraco250(burraco250 + 1)}
+                  onClick={withVibration(() => setBurraco250(burraco250 + 1))}
                 >
                   +1 Super
                 </Button>
@@ -438,7 +439,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="success"
-                  onClick={() => setBurraco200(burraco200 + 1)}
+                  onClick={withVibration(() => setBurraco200(burraco200 + 1))}
                 >
                   +1 Pulito
                 </Button>
@@ -470,7 +471,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="success"
-                  onClick={() => setBurraco150(burraco150 + 1)}
+                  onClick={withVibration(() => setBurraco150(burraco150 + 1))}
                 >
                   +1 Semipulito
                 </Button>
@@ -501,7 +502,7 @@ export default function UpdateScoreboardDialog({
                 </Button>
                 <Button
                   color="success"
-                  onClick={() => setBurraco100(burraco100 + 1)}
+                  onClick={withVibration(() => setBurraco100(burraco100 + 1))}
                 >
                   +1 Sporco
                 </Button>
@@ -532,7 +533,10 @@ export default function UpdateScoreboardDialog({
                 >
                   Annulla
                 </Button>
-                <Button color="success" onClick={() => setJolly(jolly + 1)}>
+                <Button
+                  color="success"
+                  onClick={withVibration(() => setJolly(jolly + 1))}
+                >
                   +1 Jolly
                 </Button>
               </ButtonGroup>
@@ -558,7 +562,10 @@ export default function UpdateScoreboardDialog({
                 >
                   Annulla
                 </Button>
-                <Button color="success" onClick={() => setPinella(pinella + 1)}>
+                <Button
+                  color="success"
+                  onClick={withVibration(() => setPinella(pinella + 1))}
+                >
                   +1 Pinella
                 </Button>
               </ButtonGroup>
@@ -585,7 +592,10 @@ export default function UpdateScoreboardDialog({
                 >
                   Annulla
                 </Button>
-                <Button color="success" onClick={() => setAce(ace + 1)}>
+                <Button
+                  color="success"
+                  onClick={withVibration(() => setAce(ace + 1))}
+                >
                   +1 Assi
                 </Button>
               </ButtonGroup>
@@ -611,7 +621,10 @@ export default function UpdateScoreboardDialog({
                 >
                   Annulla
                 </Button>
-                <Button color="success" onClick={() => setTen(ten + 1)}>
+                <Button
+                  color="success"
+                  onClick={withVibration(() => setTen(ten + 1))}
+                >
                   +1 Dieci
                 </Button>
               </ButtonGroup>
@@ -637,7 +650,10 @@ export default function UpdateScoreboardDialog({
                 >
                   Annulla
                 </Button>
-                <Button color="success" onClick={() => setFive(five + 1)}>
+                <Button
+                  color="success"
+                  onClick={withVibration(() => setFive(five + 1))}
+                >
                   +1 Cinque
                 </Button>
               </ButtonGroup>
