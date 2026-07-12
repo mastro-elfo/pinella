@@ -49,6 +49,7 @@ export default function EditNameDialog({
           inputRef={ref}
           enterKeyHint="done"
           onKeyUp={handleKeyUp}
+          autoCapitalize="on"
         />
       </DialogContent>
       <DialogActions>
