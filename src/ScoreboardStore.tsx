@@ -1,6 +1,7 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useReducer,
   type ActionDispatch,
   type PropsWithChildren,
@@ -22,7 +23,16 @@ type State = {
 const ScoreboardContext = createContext({} as ScoreboardContextType);
 
 export default function ScoreboardStore({ children }: PropsWithChildren) {
-  const value = useReducer(reducer, INITIAL_STATE);
+  const value = useReducer(
+    reducer,
+    JSON.parse(sessionStorage.getItem("pinella-state") ?? "null") ??
+      INITIAL_STATE,
+  );
+
+  const [state] = value;
+  useEffect(() => {
+    sessionStorage.setItem("pinella-state", JSON.stringify(state));
+  }, [state]);
 
   return <ScoreboardContext value={value}>{children}</ScoreboardContext>;
 }
@@ -36,6 +46,7 @@ export function useScoreboard() {
 }
 
 type Action =
+  | { type: "restore"; payload: State }
   | { type: "update-points-to-win"; payload: number }
   | { type: "reset-history" }
   | { type: "update-team1-name"; payload: string }
@@ -46,6 +57,9 @@ type Action =
   | { type: "delete-team2-last" };
 
 function reducer(state: State, action: Action): State {
+  if (action.type === "restore") {
+    return { ...action.payload };
+  }
   if (action.type === "update-points-to-win") {
     return {
       ...state,
