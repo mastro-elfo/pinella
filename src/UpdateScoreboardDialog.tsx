@@ -211,7 +211,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {payJolly}
               </Typography>
             </ListItemIcon>
@@ -241,7 +241,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {payPinella}
               </Typography>
             </ListItemIcon>
@@ -272,7 +272,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {payAce}
               </Typography>
             </ListItemIcon>
@@ -302,7 +302,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {payTen}
               </Typography>
             </ListItemIcon>
@@ -332,7 +332,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {payFive}
               </Typography>
             </ListItemIcon>
@@ -366,7 +366,7 @@ export default function UpdateScoreboardDialog({
         >
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {burraco300}
               </Typography>
             </ListItemIcon>
@@ -395,7 +395,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {burraco250}
               </Typography>
             </ListItemIcon>
@@ -424,7 +424,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {burraco200}
               </Typography>
             </ListItemIcon>
@@ -456,7 +456,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {burraco150}
               </Typography>
             </ListItemIcon>
@@ -487,7 +487,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {burraco100}
               </Typography>
             </ListItemIcon>
@@ -520,7 +520,7 @@ export default function UpdateScoreboardDialog({
         >
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {jolly}
               </Typography>
             </ListItemIcon>
@@ -549,7 +549,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {pinella}
               </Typography>
             </ListItemIcon>
@@ -579,7 +579,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {ace}
               </Typography>
             </ListItemIcon>
@@ -608,7 +608,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {ten}
               </Typography>
             </ListItemIcon>
@@ -637,7 +637,7 @@ export default function UpdateScoreboardDialog({
 
           <ListItem>
             <ListItemIcon>
-              <Typography sx={{ width: 24, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ width: 24, textAlign: "center" }}>
                 {five}
               </Typography>
             </ListItemIcon>
