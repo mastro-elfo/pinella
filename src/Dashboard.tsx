@@ -9,6 +9,8 @@ import {
   ToggleButtonGroup,
   Toolbar,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import ConfirmButton from "./ConfirmButton";
 import { useScoreboard } from "./ScoreboardStore";
@@ -16,8 +18,10 @@ import TeamCard from "./TeamCard";
 
 export default function Dashboard() {
   const [state, dispatcher] = useScoreboard();
-
   console.log(state);
+
+  const theme = useTheme();
+  const xSmall = useMediaQuery(theme.breakpoints.only("xs"));
 
   return (
     <Box sx={{ height: "100vh", display: "flex", flexDirection: "column" }}>
@@ -41,6 +45,7 @@ export default function Dashboard() {
               dispatcher({ type: "update-points-to-win", payload: value })
             }
             exclusive
+            size={xSmall ? "small" : "medium"}
           >
             <ToggleButton value={505}>505</ToggleButton>
             <ToggleButton value={1005}>1005</ToggleButton>
