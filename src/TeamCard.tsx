@@ -1,5 +1,6 @@
 import BackspaceIcon from "@mui/icons-material/Backspace";
 import EditIcon from "@mui/icons-material/Edit";
+import InsightsIcon from "@mui/icons-material/Insights";
 import ScoreboardIcon from "@mui/icons-material/Scoreboard";
 
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
@@ -108,20 +109,27 @@ export default function TeamCard({
               borderRadius: theme.shape.borderRadius,
               overflow: "hidden",
               boxSizing: "border-box",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
-            <SparkLineChart
-              height={60}
-              area
-              data={team.history}
-              color={theme.palette.secondary.main}
-              sx={{
-                [`& .${lineClasses.area}`]: { opacity: 0.2 },
-                [`& .${lineClasses.line}`]: { strokeWidth: 3 },
-              }}
-              yAxis={{ max: pointsToWin }}
-              margin={0}
-            />
+            {team.history.length <= 1 && (
+              <InsightsIcon fontSize="large" color="disabled" />
+            )}
+            {team.history.length > 1 && (
+              <SparkLineChart
+                height={60}
+                area
+                data={team.history}
+                color={theme.palette.secondary.main}
+                sx={{
+                  [`& .${lineClasses.area}`]: { opacity: 0.2 },
+                  [`& .${lineClasses.line}`]: { strokeWidth: 3 },
+                }}
+                yAxis={{ max: pointsToWin }}
+                margin={0}
+              />
+            )}
           </Box>
         </CardContent>
         <CardActions>
