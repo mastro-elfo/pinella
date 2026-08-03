@@ -1,5 +1,4 @@
 import BackspaceIcon from "@mui/icons-material/Backspace";
-import EditIcon from "@mui/icons-material/Edit";
 import InsightsIcon from "@mui/icons-material/Insights";
 import ScoreboardIcon from "@mui/icons-material/Scoreboard";
 
@@ -15,6 +14,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Tooltip,
   useTheme,
 } from "@mui/material";
 import { lineClasses, SparkLineChart } from "@mui/x-charts";
@@ -24,6 +24,7 @@ import EditNameDialog from "./EditNameDialog";
 import type { Team } from "./ScoreboardStore";
 import TrendingIcon from "./TrendingIcon";
 import UpdateScoreboardDialog from "./UpdateScoreboardDialog";
+import useTooltip from "./useTooltip";
 
 type TeamCardProps = {
   team: Team;
@@ -47,6 +48,11 @@ export default function TeamCard({
   const [editNameOpen, setEditNameOpen] = useState(false);
   const [editScoreboardOpen, setEditScoreboardOpen] = useState(false);
 
+  const [editTeamNameTooltip, setEditTeamNameTooltip] = useTooltip(
+    "edit-team-name",
+    { defaultValue: true },
+  );
+
   const teamScore = team.history.at(-1) ?? 0;
   const otherScore = other.history.at(-1) ?? 0;
   const difference = teamScore - otherScore;
@@ -68,7 +74,17 @@ export default function TeamCard({
     <>
       <Card>
         <CardHeader
-          title={team.name}
+          title={
+            <Tooltip
+              title="Clicca per cambiare il nome"
+              open={editTeamNameTooltip}
+              onOpen={() => setEditTeamNameTooltip(true)}
+              onClose={() => setEditTeamNameTooltip(false)}
+              arrow
+            >
+              <Box>{team.name}</Box>
+            </Tooltip>
+          }
           subheader={`${teamScore} punti`}
           slotProps={{
             title: {
@@ -133,16 +149,15 @@ export default function TeamCard({
           </Box>
         </CardContent>
         <CardActions>
-          <IconButton onClick={() => setEditNameOpen(true)}>
-            <EditIcon />
-          </IconButton>
           <ConfirmButton
             onConfirm={onDeleteLast}
-            title="Cancella ultimo punteggio"
+            title="Elimina ultimo punteggio"
             disabled={
               team.history.length < other.history.length ||
               team.history.length === 0
             }
+            color="error"
+            confirmProps={{ children: "Elimina" }}
           >
             <BackspaceIcon />
           </ConfirmButton>
@@ -155,6 +170,7 @@ export default function TeamCard({
                 teamWon ||
                 teamLost
               }
+              color="primary"
             >
               <ScoreboardIcon />
             </IconButton>
