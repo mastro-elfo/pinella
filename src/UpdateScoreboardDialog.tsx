@@ -170,6 +170,9 @@ export default function UpdateScoreboardDialog({
           <Step completed={activeStep > 2}>
             <StepButton onClick={() => setActiveStep(2)}>Punti</StepButton>
           </Step>
+          <Step completed={activeStep > 3}>
+            <StepButton onClick={() => setActiveStep(3)}>Riepilogo</StepButton>
+          </Step>
         </Stepper>
 
         <Stack
@@ -663,6 +666,20 @@ export default function UpdateScoreboardDialog({
             Tutte le carte dal 3 al 7
           </Typography>
         </Stack>
+
+        <Stack
+          direction="column"
+          sx={{ display: activeStep === 3 ? undefined : "none", m: 1 }}
+        >
+          <Typography variant="h4" align="center">
+            <Typography color="success" component="span" variant="inherit">
+              {current}
+            </Typography>{" "}
+            <Typography color="textSecondary" component="span" variant="h5">
+              punti
+            </Typography>
+          </Typography>
+        </Stack>
       </DialogContent>
 
       <DialogActions>
@@ -681,7 +698,7 @@ export default function UpdateScoreboardDialog({
         >
           Precedente
         </Button>
-        {activeStep < 2 && (
+        {activeStep < 3 && (
           <Button
             color="secondary"
             onClick={() => setActiveStep(activeStep + 1)}
@@ -689,7 +706,7 @@ export default function UpdateScoreboardDialog({
             Successivo
           </Button>
         )}
-        {activeStep >= 2 && (
+        {activeStep >= 3 && (
           <Button onClick={handleConfirm} color="success">
             Conferma
           </Button>
